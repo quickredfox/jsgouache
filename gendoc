@@ -1,0 +1,1 @@
+rake dist ;sudo ~/Downloads/NaturalDocs-1.35/NaturalDocs -t 4 -nag -do -r -i ~/Work/personal/JsGouache/dist -xi ~/Work/personal/JsGouache/dist/alt -o HTML ~/Work/personal/JsGouache/docs -p /var/naturaldocs/JsGouache; 

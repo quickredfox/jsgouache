@@ -1,0 +1,50 @@
+/* 
+
+ Script: JsGouache.js
+
+    JsGouache aims to offer a tool for javascript developers to manipulate colors
+    within  various color spaces while raising awareness for different types
+    of color deficiencies.  
+    
+
+ About:
+
+    JsGouache aims to offer a tool for javascript developers to manipulate colors
+    within various color spaces while attempting to raise awareness for different 
+    types of color deficiencies.
+    
+    The library offers various functions for manipulation of the more common color
+    spaces used on the web: RGB, Hexadecimal, HSL. It also implements a theoretical 
+    (limited) simulation of the LMS color space (http://en.wikipedia.org/wiki/LMS_Color_Space) 
+    
+ References:
+ 
+   - http://easyrgb.com
+   - http://www.aprompt.ca/WebPageColors.html
+   - http://www.fx.clemson.edu/~rkarl/c2g.html
+   - http://mckoss.com/jscript/object.htm
+
+ Note:
+ 
+    Mike Koss has a pretty interesting approach at 'class' inheritance 
+    that he explains here: http://mckoss.com/jscript/object.htm 
+
+ Version:
+
+    - Version: <%= APP_VERSION %>
+
+ Requirements:
+
+    - Javascript: <http://en.wikipedia.org/wiki/JavaScript>
+
+ Copyright:
+
+    copyright (c) 2008 Francois Lafortune ( aka: QuickRedFox ) 
+
+ License:
+ 
+   This code is freely distributable under the terms of the GNU GENERAL PUBLIC LICENSE Version 3
+   
+*/
+
+ 

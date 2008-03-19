@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"> <head>
+<title>demo</title> <link rel="stylesheet" href="css/demo.css" type="text/css"
+media="screen" title="no title" charset="utf-8"> 
+<script src="js/prototype.js" type="text/javascript" charset="utf-8"></script>
+<script src="../JsGouache.js" type="text/javascript" charset="utf-8"></script> 
+<script src="js/demo.js" type="text/javascript" charset="utf-8"></script> </head>
+
+<body>
+  <p id="loading" style="display:none;">loading...</p>
+  <div class="tableshadow">
+<table border="1">
+  <tr>
+    <th>Scale</th>
+
+    <th>Specs</th>
+
+    <th>Schemes</th>
+
+    <th>Simulations</th>
+
+    <th>Accessibility</th>
+  </tr>
+
+  <tr>
+    <td rowspan="6" class="mainscale"><div id="scale"></div></td>
+
+    <td class="specs" rowspan="2">
+      <dl class="colorspecs">
+        <dt>Color</dt>
+        <dd class="colorsquare"></dd>
+        <dt>Hexadecimal</dt>
+        <dd class="hexstring">#000000</dd>
+        <dt>RGB</dt>
+        <dd class="rgbstring">rgb (0, 0, 0)</dd>
+        <dt>HSL</dt>
+        <dd class="hslstring">hsl (0, 0, 0)</dd>
+        
+      </dl>
+      <dl class="satlum">
+        <dt>Saturation Range</dt>
+      <dd><div class="satrange">
+
+      </div></dd>
+      <dt>Luminance Range</dt>
+      <dd><div class="lumrange">
+        
+      </div></dd>
+      </dl>
+    </td>
+
+    <td class="scheme" id="soft-complementary">
+      <dl>
+        <dt>Soft Complementary</dt>
+        <dd class="scheme-box">
+          <div class="scheme-dots">
+            <b class="spdot dot1">&bull;</b>
+            <i class="spdot dot2">&bull;</i>
+            <i class="spdot dot3">&bull;</i>
+            <i class="spdot dot4">&bull;</i>
+            <i class="spdot dot5">&bull;</i>
+            <b class="spdot dot6">&bull;</b>
+            <i class="spdot dot7">&bull;</i>
+            <b class="spdot dot8">&bull;</b>
+            <i class="spdot dot9">&bull;</i>
+            <i class="spdot dota">&bull;</i>
+            <i class="spdot dotb">&bull;</i>
+            <i class="spdot dotc">&bull;</i>                    
+          </div>
+        </dd>
+      </dl>
+    </td>
+
+    <td id="sims" rowspan="4">
+      <dl id="simulations">
+        <dt>protanopia</dt>
+        <dd class="sim-square" id="protan"></dd>
+        <dt>Deuteranopia</dt>
+        <dd class="sim-square" id="deuter"></dd>
+        <dt>Tritanopia</dt>
+        <dd class="sim-square" id="tritan"></dd>
+        <dt>Achromatopsia</dt>
+        <dd class="sim-square" id="achro"></dd>
+      </dl>
+    </td>
+    <td rowspan="6" id="accessibility">
+      <button type="button" id="setrandom">Set Random Colors</button>
+      <button type="button" id="adjustread">Adjust Readability <small>(&asymp;75%)</small></button>
+      <div id="lorem">
+        <h3>Lorem Ipsum!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+      <div id="readability">
+        <dl>
+          <dt>Normal</dt>
+          <dd>
+            <dl class="stat">
+              <dt>Hue Contrast:</dt>
+              <dd></dd>
+              <dt>Brightness Contrast:</dt>
+              <dd></dd>
+            </dl>
+          </dd>
+          <dt>protanopia</dt>
+          <dd>
+            <dl class="stat">
+              <dt>Hue Contrast:</dt>
+              <dd></dd>
+              <dt>Brightness Contrast:</dt>
+              <dd></dd>
+            </dl>
+          </dd>
+          <dt>Deuteranopia</dt>
+          <dd>
+            <dl class="stat">
+              <dt>Hue Contrast:</dt>
+              <dd></dd>
+              <dt>Brightness Contrast:</dt>
+              <dd></dd>
+            </dl>
+          </dd>
+          <dt>Tritanopia</dt>
+          <dd>
+            <dl class="stat">
+              <dt>Hue Contrast:</dt>
+              <dd></dd>
+              <dt>Brightness Contrast:</dt>
+              <dd></dd>
+            </dl>
+          </dd>
+          <dt>Achromatopsia</dt>
+          <dd>
+            <dl class="stat">
+              <dt>Hue Contrast:</dt>
+              <dd></dd>
+              <dt>Brightness Contrast:</dt>
+              <dd></dd>
+            </dl>
+          </dd>
+        </dl>
+        
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+
+    <td class="scheme" id="triad">
+      <dl>
+        <dt>Triad</dt>
+        <dd class="scheme-box">
+          <div class="scheme-dots">
+            <b class="spdot dot1">&bull;</b>
+            <i class="spdot dot2">&bull;</i>
+            <i class="spdot dot3">&bull;</i>
+            <i class="spdot dot4">&bull;</i>
+            <b class="spdot dot5">&bull;</b>
+            <i class="spdot dot6">&bull;</i>
+            <i class="spdot dot7">&bull;</i>
+            <i class="spdot dot8">&bull;</i>
+            <b class="spdot dot9">&bull;</b>
+            <i class="spdot dota">&bull;</i>
+            <i class="spdot dotb">&bull;</i>
+            <i class="spdot dotc">&bull;</i>                    
+          </div>
+          
+        </dd>
+      </dl>
+      
+    </td>
+  </tr>
+
+  <tr>
+    <td class="specs" rowspan="2">
+      <dl class="colorspecs">
+        <dt>Complementary</dt>
+        <dd class="colorsquare"></dd>
+        <dt>Hexadecimal</dt>
+        <dd class="hexstring">#000000</dd>
+        <dt>RGB</dt>
+        <dd class="rgbstring">rgb (0, 0, 0)</dd>
+        <dt>HSL</dt>
+        <dd class="hslstring">hsl (0, 0, 0)</dd>
+      </dl>
+      <dl class="satlum">
+        <dt>Saturation Range</dt>
+      <dd><div class="satrange">
+
+      </div></dd>
+      <dt>Luminance Range</dt>
+      <dd><div class="lumrange">
+        
+      </div></dd>
+      </dl>
+    </td>
+
+    <td class="scheme" id="tetrad">
+      <dl>
+        <dt>Tetrad Square</dt>
+        <dd class="scheme-box">
+          <div class="scheme-dots">
+            <b class="spdot dot1">&bull;</b>
+            <i class="spdot dot2">&bull;</i>
+            <i class="spdot dot3">&bull;</i>
+            <b class="spdot dot4">&bull;</b>
+            <i class="spdot dot5">&bull;</i>
+            <i class="spdot dot6">&bull;</i>
+            <b class="spdot dot7">&bull;</b>
+            <i class="spdot dot8">&bull;</i>
+            <i class="spdot dot9">&bull;</i>
+            <b class="spdot dota">&bull;</b>
+            <i class="spdot dotb">&bull;</i>
+            <i class="spdot dotc">&bull;</i>                    
+          </div>
+          
+          </dd>
+      </dl>
+      
+    </td>
+  </tr>
+
+  <tr>
+    
+    <td class="scheme" id="tetrad_alt">
+      <dl>
+        <dt>Tetrad Rectangle</dt>
+        <dd class="scheme-box">
+          <div class="scheme-dots">
+            <b class="spdot dot1">&bull;</b>
+            <i class="spdot dot2">&bull;</i>
+            <b class="spdot dot3">&bull;</b>
+            <i class="spdot dot4">&bull;</i>
+            <i class="spdot dot5">&bull;</i>
+            <i class="spdot dot6">&bull;</i>
+            <b class="spdot dot7">&bull;</b>
+            <i class="spdot dot8">&bull;</i>
+            <b class="spdot dot9">&bull;</b>
+            <i class="spdot dota">&bull;</i>
+            <i class="spdot dotb">&bull;</i>
+            <i class="spdot dotc">&bull;</i>                    
+          </div>
+        </dd>
+      </dl>
+
+    </td>
+  </tr>
+
+  <tr>
+    <td class="specs" rowspan="2">
+      <dl class="colorspecs">
+        <dt>Achromatic</dt>
+        <dd class="colorsquare"></dd>
+        <dt>Hexadecimal</dt>
+        <dd class="hexstring">#000000</dd>
+        <dt>RGB</dt>
+        <dd class="rgbstring">rgb (0, 0, 0)</dd>
+        <dt>HSL</dt>
+        <dd class="hslstring">hsl (0, 0, 0)</dd>
+        
+      </dl>
+      <dl class="satlum">
+      
+      <dd style="display:none;"><div class="satrange" >
+
+      </div></dd>
+      <dt>Luminance Range</dt>
+      <dd><div class="lumrange">
+        
+      </div></dd>
+      </dl>
+      
+    </td>
+
+    <td class="scheme" id="analogic">
+      <dl>
+        <dt>Analogic</dt>
+        <dd class="scheme-box">
+          <div class="scheme-dots">
+            <b class="spdot dot1">&bull;</b>
+            <i class="spdot dot2">&bull;</i>
+            <i class="spdot dot3">&bull;</i>
+            <i class="spdot dot4">&bull;</i>
+            <i class="spdot dot5">&bull;</i>
+            <b class="spdot dot6">&bull;</b>
+            <b class="spdot dot7">&bull;</b>
+            <b class="spdot dot8">&bull;</b>
+            <i class="spdot dot9">&bull;</i>
+            <i class="spdot dota">&bull;</i>
+            <i class="spdot dotb">&bull;</i>
+            <i class="spdot dotc">&bull;</i>                    
+          </div>
+          </dd>
+      </dl>
+    </td>   
+    <td rowspan="2">
+      <b class="alt-scale">Simulated Scales</b>
+      <ul id="alt-scales">
+        <li class='label'>n<br />o<br />r<br />m<br />a<br />l</li>
+        <li class='miniscale'></li>
+        
+        <li class='label'>p<br />r<br />o<br />t<br />a<br />n<br />o<br />p<br />i<br />a</li>
+        <li class='miniscale'></li>
+        <li class='label'>d<br />e<br />u<br />t<br />e<br />r<br />a<br />n<br />o<br />p<br />i<br />a</li>
+        <li class='miniscale'></li>
+        <li class='label'>t<br />r<br />i<br />t<br />a<br />n<br />o<br />p<br />i<br />a</li>
+        <li class='miniscale'></li>
+        <li class='label'>a<br />c<br />h<br />r<br />o<br />m<br />a<br />t<br />o<br />p<br />s<br />i<br />a</li>
+        <li class='miniscale'></li>
+      </ul>
+    </td>    
+  </tr>
+
+  <tr>
+    <td class="scheme" id="analogous">
+      <dl>
+        <dt>Analogue</dt>
+        <dd class="scheme-box">
+          <div class="scheme-dots">
+            <b class="spdot dot1">&bull;</b>
+            <b class="spdot dot2">&bull;</b>
+            <i class="spdot dot3">&bull;</i>
+            <i class="spdot dot4">&bull;</i>
+            <i class="spdot dot5">&bull;</i>
+            <i class="spdot dot6">&bull;</i>
+            <i class="spdot dot7">&bull;</i>
+            <i class="spdot dot8">&bull;</i>
+            <i class="spdot dot9">&bull;</i>
+            <i class="spdot dota">&bull;</i>
+            <i class="spdot dotb">&bull;</i>
+            <b class="spdot dotc">&bull;</b>                    
+          </div>
+          </dd>
+      </dl>
+    </td>
+    
+  </tr>
+</table>
+<div>
+
+</body>
+</html>

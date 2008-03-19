@@ -1,0 +1,460 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>JavaScript unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <script src="../assets/jsunittest.js" type="text/javascript"></script>
+  <script src='../../src/function.js' type="text/javascript"></script>
+  <script src='../../src/base.js' type="text/javascript"></script>
+  <script src='../../src/color.js' type="text/javascript"></script>
+  <script src='../../src/colorscales.js' type="text/javascript"></script>
+  <script src='../../src/color_accessible.js' type="text/javascript"></script>
+  <script src='../../src/postamble.js' type="text/javascript"></script>
+  <link rel="stylesheet" href="../assets/unittest.css" type="text/css" />
+  
+</head>
+<body>
+
+<div id="content">
+
+  <div id="header">
+    <h1>JavaScript unit test file</h1>
+    <p>
+      This file tests <strong>basic_tests.js</strong>.
+    </p>
+  </div>
+
+  <!-- Log output (one per Runner, via {testLog: "testlog"} option)-->
+  <h1>Core Tests</h1>
+  <div id="testlog"></div>
+  <h1>Readability</h1>
+  <div id="testlog2"></div>
+  
+  <!-- Put sample/test html here -->
+  <div id="sample"></div>
+</div>
+
+<script type="text/javascript">
+// <![CDATA[
+
+  new Test.Unit.Runner({
+  
+    testColorObjectFromHexString: function(){with(this){
+      var colors = {}
+      assertNothingRaised(function(){ colors.a = new JsGouache.Color('#ffffff') });
+      assertNothingRaised(function(){ colors.b = new JsGouache.Color('ffffff') });
+      assertNothingRaised(function(){ colors.c = new JsGouache.Color(' #ffffff ') });
+      assertNothingRaised(function(){ colors.d = new JsGouache.Color(' # ffffff ') });
+      assert(colors.a.hex_red == "FF");
+      assert(colors.b.hex_red == "FF");
+      assert(colors.c.hex_red == "FF");
+      assert(colors.d.hex_red == "FF");
+      assert(colors.a.hex_blue == "FF");
+      assert(colors.b.hex_blue == "FF");
+      assert(colors.c.hex_blue == "FF");
+      assert(colors.d.hex_blue == "FF");
+      assert(colors.a.hex_green == "FF");
+      assert(colors.b.hex_green == "FF");
+      assert(colors.c.hex_green == "FF");
+      assert(colors.d.hex_green == "FF");
+      assertEqual( colors.a.to_hsl().hue, 0 )
+      assertEqual( colors.b.to_hsl().saturation, 0 )
+      assertEqual( colors.c.to_hsl().luminance, 1 )
+      assertEqual( colors.d.to_hsl().hue, 0 )
+      assert(colors.a.red == "255");
+      assert(colors.b.red == "255");
+      assert(colors.c.red == "255");
+      assert(colors.d.red == "255");
+      assert(colors.a.blue == "255");
+      assert(colors.b.blue == "255");
+      assert(colors.c.blue == "255");
+      assert(colors.d.blue == "255");
+      assert(colors.a.green == "255");
+      assert(colors.b.green == "255");
+      assert(colors.c.green == "255");
+      assert(colors.d.green == "255");
+      
+    }},
+    testColorObjectFromRGBTriple: function(){with(this){
+      var colors = {}
+      assertNothingRaised(function(){ colors.a = new JsGouache.Color(255,255,255) });
+      assertNothingRaised(function(){ colors.b = new JsGouache.Color(255,255,255) });
+      assertNothingRaised(function(){ colors.c = new JsGouache.Color(255,255,255) });
+      assertNothingRaised(function(){ colors.d = new JsGouache.Color(255,255,255) });
+      assert(colors.a.hex_red == "FF");
+      assert(colors.b.hex_red == "FF");
+      assert(colors.c.hex_red == "FF");
+      assert(colors.d.hex_red == "FF");
+      assert(colors.a.hex_blue == "FF");
+      assert(colors.b.hex_blue == "FF");
+      assert(colors.c.hex_blue == "FF");
+      assert(colors.d.hex_blue == "FF");
+      assert(colors.a.hex_green == "FF");
+      assert(colors.b.hex_green == "FF");
+      assert(colors.c.hex_green == "FF");
+      assert(colors.d.hex_green == "FF");
+      assertEqual( colors.a.to_hsl().hue, 0 )
+      assertEqual( colors.b.to_hsl().saturation, 0 )
+      assertEqual( colors.c.to_hsl().luminance, 1 )
+      assertEqual( colors.d.to_hsl().hue, 0 )
+      assert(colors.a.red == "255");
+      assert(colors.b.red == "255");
+      assert(colors.c.red == "255");
+      assert(colors.d.red == "255");
+      assert(colors.a.blue == "255");
+      assert(colors.b.blue == "255");
+      assert(colors.c.blue == "255");
+      assert(colors.d.blue == "255");
+      assert(colors.a.green == "255");
+      assert(colors.b.green == "255");
+      assert(colors.c.green == "255");
+      assert(colors.d.green == "255");
+      
+    }},
+    testColorObjectFromRGBString: function(){with(this){
+      var colors = {}
+      assertNothingRaised(function(){ colors.a = new JsGouache.Color('rgb(255,255,255)') });
+      assertNothingRaised(function(){ colors.b = new JsGouache.Color('rgb( 255, 255, 255 )') });
+      assertNothingRaised(function(){ colors.c = new JsGouache.Color('rgb ( 255 , 255 , 255 ) ') });
+      assertNothingRaised(function(){ colors.d = new JsGouache.Color('rgb ( 255, 255, 255 )') });
+      assert(colors.a.hex_red == "FF");
+      assert(colors.b.hex_red == "FF");
+      assert(colors.c.hex_red == "FF");
+      assert(colors.d.hex_red == "FF");
+      assert(colors.a.hex_blue == "FF");
+      assert(colors.b.hex_blue == "FF");
+      assert(colors.c.hex_blue == "FF");
+      assert(colors.d.hex_blue == "FF");
+      assert(colors.a.hex_green == "FF");
+      assert(colors.b.hex_green == "FF");
+      assert(colors.c.hex_green == "FF");
+      assert(colors.d.hex_green == "FF");
+      assertEqual( colors.a.to_hsl().hue, 0 )
+      assertEqual( colors.b.to_hsl().saturation, 0 )
+      assertEqual( colors.c.to_hsl().luminance, 1 )
+      assertEqual( colors.d.to_hsl().hue, 0 )
+      assert(colors.a.red == "255");
+      assert(colors.b.red == "255");
+      assert(colors.c.red == "255");
+      assert(colors.d.red == "255");
+      assert(colors.a.blue == "255");
+      assert(colors.b.blue == "255");
+      assert(colors.c.blue == "255");
+      assert(colors.d.blue == "255");
+      assert(colors.a.green == "255");
+      assert(colors.b.green == "255");
+      assert(colors.c.green == "255");
+      assert(colors.d.green == "255");
+    }},
+    testRGBColorObject: function(){with(this){
+      var colors = {}
+      assertNothingRaised(function(){ colors.a = new JsGouache.RGBColor('rgb(255,255,255)') });
+      assertNothingRaised(function(){ colors.b = new JsGouache.RGBColor('rgb( 255, 255, 255 )') });
+      assertNothingRaised(function(){ colors.c = new JsGouache.RGBColor('rgb ( 255 , 255 , 255 ) ') });
+      assertNothingRaised(function(){ colors.d = new JsGouache.RGBColor('rgb ( 255, 255, 255 )') });
+      assert(colors.a.hex_red == "FF");
+      assert(colors.b.hex_red == "FF");
+      assert(colors.c.hex_red == "FF");
+      assert(colors.d.hex_red == "FF");
+      assert(colors.a.hex_blue == "FF");
+      assert(colors.b.hex_blue == "FF");
+      assert(colors.c.hex_blue == "FF");
+      assert(colors.d.hex_blue == "FF");
+      assert(colors.a.hex_green == "FF");
+      assert(colors.b.hex_green == "FF");
+      assert(colors.c.hex_green == "FF");
+      assert(colors.d.hex_green == "FF");
+      assertEqual( colors.a.to_hsl().hue, 0 )
+      assertEqual( colors.b.to_hsl().saturation, 0 )
+      assertEqual( colors.c.to_hsl().luminance, 1 )
+      assertEqual( colors.d.to_hsl().hue, 0 )
+      assert(colors.a.red == "255");
+      assert(colors.b.red == "255");
+      assert(colors.c.red == "255");
+      assert(colors.d.red == "255");
+      assert(colors.a.blue == "255");
+      assert(colors.b.blue == "255");
+      assert(colors.c.blue == "255");
+      assert(colors.d.blue == "255");
+      assert(colors.a.green == "255");
+      assert(colors.b.green == "255");
+      assert(colors.c.green == "255");
+      assert(colors.d.green == "255");
+    }},
+    testHexColorObject: function(){with(this){
+      var colors = {}
+      assertNothingRaised(function(){ colors.a = new JsGouache.HexColor('#ffffff') });
+      assertNothingRaised(function(){ colors.b = new JsGouache.HexColor('ffffff') });
+      assertNothingRaised(function(){ colors.c = new JsGouache.HexColor(' #ffffff ') });
+      assertNothingRaised(function(){ colors.d = new JsGouache.HexColor(' # ffffff ') });
+      assert(colors.a.hex_red == "FF");
+      assert(colors.b.hex_red == "FF");
+      assert(colors.c.hex_red == "FF");
+      assert(colors.d.hex_red == "FF");
+      assert(colors.a.hex_blue == "FF");
+      assert(colors.b.hex_blue == "FF");
+      assert(colors.c.hex_blue == "FF");
+      assert(colors.d.hex_blue == "FF");
+      assert(colors.a.hex_green == "FF");
+      assert(colors.b.hex_green == "FF");
+      assert(colors.c.hex_green == "FF");
+      assert(colors.d.hex_green == "FF");
+      assertEqual( colors.a.to_hsl().hue, 0 )
+      assertEqual( colors.b.to_hsl().saturation, 0 )
+      assertEqual( colors.c.to_hsl().luminance, 1 )
+      assertEqual( colors.d.to_hsl().hue, 0 )
+      assert(colors.a.red == "255");
+      assert(colors.b.red == "255");
+      assert(colors.c.red == "255");
+      assert(colors.d.red == "255");
+      assert(colors.a.blue == "255");
+      assert(colors.b.blue == "255");
+      assert(colors.c.blue == "255");
+      assert(colors.d.blue == "255");
+      assert(colors.a.green == "255");
+      assert(colors.b.green == "255");
+      assert(colors.c.green == "255");
+      assert(colors.d.green == "255");
+      
+    }},
+    testHSLColorObject: function(){with(this){
+      var colors = {}
+      assertNothingRaised(function(){ colors.a = new JsGouache.HSLColor(360,1,1) });
+      assertNothingRaised(function(){ colors.b = new JsGouache.HSLColor(360,1,1) });
+      assertNothingRaised(function(){ colors.c = new JsGouache.HSLColor(360,1,1) });
+      assertNothingRaised(function(){ colors.d = new JsGouache.HSLColor(360,1,1) });
+      assert(colors.a.hex_red == "FF");
+      assert(colors.b.hex_red == "FF");
+      assert(colors.c.hex_red == "FF");
+      assert(colors.d.hex_red == "FF");
+      assert(colors.a.hex_blue == "FF");
+      assert(colors.b.hex_blue == "FF");
+      assert(colors.c.hex_blue == "FF");
+      assert(colors.d.hex_blue == "FF");
+      assert(colors.a.hex_green == "FF");
+      assert(colors.b.hex_green == "FF");
+      assert(colors.c.hex_green == "FF");
+      assert(colors.d.hex_green == "FF");
+      assert(colors.a.red == "255");
+      assert(colors.b.red == "255");
+      assert(colors.c.red == "255");
+      assert(colors.d.red == "255");
+      assert(colors.a.blue == "255");
+      assert(colors.b.blue == "255");
+      assert(colors.c.blue == "255");
+      assert(colors.d.blue == "255");
+      assert(colors.a.green == "255");
+      assert(colors.b.green == "255");
+      assert(colors.c.green == "255");
+      assert(colors.d.green == "255");
+      assertEqual( colors.a.to_hsl().hue, 0 )
+      assertEqual( colors.b.to_hsl().saturation, 0 )
+      assertEqual( colors.c.to_hsl().luminance, 1 )
+      assertEqual( colors.d.to_hsl().hue, 0 )
+        
+    }},
+    testColorSpaceSwitching: function(){with(this){
+      var color = new JsGouache.Color(255,255,255)
+      var colors = {};
+      colors.a = color.to_hsl();
+      colors.b = color.to_rgb();
+      colors.c = color.to_hex();
+      colors.d = color.to_hsl().to_rgb().to_hex().to_rgb().to_hsl();
+      assert(colors.a.hex_red == "FF");
+      assert(colors.b.hex_red == "FF");
+      assert(colors.c.hex_red == "FF");
+      assert(colors.d.hex_red == "FF");
+      assert(colors.a.hex_blue == "FF");
+      assert(colors.b.hex_blue == "FF");
+      assert(colors.c.hex_blue == "FF");
+      assert(colors.d.hex_blue == "FF");
+      assert(colors.a.hex_green == "FF");
+      assert(colors.b.hex_green == "FF");
+      assert(colors.c.hex_green == "FF");
+      assert(colors.d.hex_green == "FF");
+      assertEqual( colors.a.to_hsl().hue, 0 )
+      assertEqual( colors.b.to_hsl().saturation, 0 )
+      assertEqual( colors.c.to_hsl().luminance, 1 )
+      assertEqual( colors.d.to_hsl().hue, 0 )
+      assert(colors.a.red == "255");
+      assert(colors.b.red == "255");
+      assert(colors.c.red == "255");
+      assert(colors.d.red == "255");
+      assert(colors.a.blue == "255");
+      assert(colors.b.blue == "255");
+      assert(colors.c.blue == "255");
+      assert(colors.d.blue == "255");
+      assert(colors.a.green == "255");
+      assert(colors.b.green == "255");
+      assert(colors.c.green == "255");
+      assert(colors.d.green == "255");
+    }},
+    testColorToCss: function(){with(this){
+      var test_red = new JsGouache.RGBColor(255,0,0);
+      var test_green = new JsGouache.Color(0,255,0);
+      var test_blue = new JsGouache.Color(0,0,255);
+      assertEqual(test_red.to_css(),'#FF0000');
+      assertEqual(test_green.to_css(),'#00FF00')
+      assertEqual(test_blue.to_css(),'#0000FF')
+      assertEqual(test_red.to_css(true),'rgb(255,0,0)');
+      assertEqual(test_green.to_css(true),'rgb(0,255,0)')
+      assertEqual(test_blue.to_css(true),'rgb(0,0,255)')
+      
+    }},
+    testColorToCss: function(){with(this){
+      var test_red = new JsGouache.RGBColor(255,0,0);
+      var test_green = new JsGouache.Color(0,255,0);
+      var test_blue = new JsGouache.Color(0,0,255);
+      assertEqual(test_red.to_css(),'#FF0000');
+      assertEqual(test_green.to_css(),'#00FF00')
+      assertEqual(test_blue.to_css(),'#0000FF')
+      assertEqual(test_red.to_css(true),'rgb(255,0,0)');
+      assertEqual(test_green.to_css(true),'rgb(0,255,0)')
+      assertEqual(test_blue.to_css(true),'rgb(0,0,255)')
+      
+    }},
+    testColorObjectsRespondToProperMethods: function(){with(this){
+      var methods = ['complementary','saturation_range','luminance_range','degree_offsets','hue_shift','luminance_shift','saturation_shift', 'hue_up','hue_dn','luminance_up','luminance_dn','saturation_up','saturation_dn','soft_complementary','triad','tetrad','tetrad_alt','analogous','analogic','to_css','to_hex','to_rgb','to_hsl','is_websafe','simulate'];
+      for(i=0;i<methods.length;i++){
+        assertNotUndefined(new JsGouache.Color(255,0,0)[methods[i]], 'JsGouache.Color() does not seem to respond to '+methods[i])
+        assertNotUndefined(new JsGouache.RGBColor(255,0,0)[methods[i]], 'JsGouache.Color() does not seem to respond to '+methods[i])        
+        assertNotUndefined(new JsGouache.HexColor('#FF0000')[methods[i]], 'JsGouache.Color() does not seem to respond to '+methods[i])        
+        assertNotUndefined(new JsGouache.HSLColor(0,1,0)[methods[i]], 'JsGouache.Color() does not seem to respond to '+methods[i])        
+      }
+
+    }},
+    testWebSafeColorCheck: function(){with(this){
+      var safeColors = [new JsGouache.HexColor('#ff0000'),new JsGouache.HexColor('#006600'),new JsGouache.HexColor('#000033')]
+      var unsafeColors = [new JsGouache.HexColor('#FE4523'),new JsGouache.HexColor('#04041A'),new JsGouache.HexColor('#FF001A')]
+      for(var i in safeColors){
+        assertEqual(true,safeColors[i].is_websafe())
+      }
+      for(var i in unsafeColors){
+        assertEqual(false,unsafeColors[i].is_websafe())
+      }
+      
+    }},
+    testWebSafeCheckIntegrityAfterColorSpaceConversion: function(){with(this){
+      var safeColors = [new JsGouache.HexColor('#ff0000').to_rgb().to_hsl().to_hex(),new JsGouache.HexColor('#006600').to_hsl().to_rgb().to_hex(),new JsGouache.HexColor('#000033').to_hex().to_rgb().to_hsl()]
+      var unsafeColors = [new JsGouache.HexColor('#FE4523').to_rgb().to_hsl().to_hex(),new JsGouache.HexColor('#04041A').to_hsl().to_rgb().to_hex(),new JsGouache.HexColor('#FF001A').to_hex().to_rgb().to_hsl()]
+      for(var i in safeColors){
+        assertEqual(true,safeColors[i].is_websafe())
+      }
+      for(var i in unsafeColors){
+        assertEqual(false,unsafeColors[i].is_websafe())
+      }
+      
+    }},
+    testTriadIsThree: function(){with(this){
+      var color = new JsGouache.RGBColor(90,30,60);
+      assert(color.triad().length == 3)
+    }},
+    testTetradIsFour: function(){with(this){
+      var color = new JsGouache.RGBColor(90,30,60);
+      assert(color.tetrad().length == 4)
+      
+    }},
+    testTetradAltIsFour: function(){with(this){
+      var color = new JsGouache.RGBColor(90,30,60);
+      assert(color.tetrad_alt().length == 4)
+    }},
+    testAnalogousIsThree: function(){with(this){
+      var color = new JsGouache.RGBColor(90,30,60);
+      assert(color.analogous().length == 3)
+
+    }},
+    testAnalogicIsFour: function(){with(this){
+      var color = new JsGouache.RGBColor(90,30,60);
+      assert(color.analogic().length == 4)
+    }},
+    testComplementaryIsOne: function(){with(this){
+      var colors = new JsGouache.RGBColor(90,30,60);      
+    }},
+    // Tests with custom limits fail because i think this wrecks algorithm integrity... must test visually
+    testSatRangeLength: function(){with(this){
+      var color = new JsGouache.RGBColor(90,60,30);
+      assert(color.saturation_range().length == 100)
+    }},
+    testLumRangeLength: function(){with(this){
+      var color = new JsGouache.RGBColor(90,60,30);
+      assert(color.luminance_range().length == 100)
+    }},
+    testDegreeOffsets: function(){with(this){
+      var color = new JsGouache.RGBColor(60,60,60);
+      assert(color.degree_offsets(90)[1].to_css() != color.to_css())
+    }}
+    
+  }, {testLog: "testlog"}); 
+  new Test.Unit.Runner({    
+    testAttributesExist: function() { with(this) {
+      var c1 = new JsGouache.HexColor('#ffffff');
+      var c2 = new JsGouache.HexColor('#000000');
+      var r = new JsGouache.ColorAccessible.readability(c1,c2);
+      assertNotUndefined(r.normal)
+      assertNotUndefined(r.deuteranopia)
+      assertNotUndefined(r.protanopia)
+      assertNotUndefined(r.achromatopsia)      
+      assertNotUndefined(r.tritanopia)      
+      assertNotUndefined(r.normal.brightness)
+      assertNotUndefined(r.deuteranopia.brightness)
+      assertNotUndefined(r.protanopia.brightness)
+      assertNotUndefined(r.achromatopsia.brightness)      
+      assertNotUndefined(r.tritanopia.brightness)      
+      assertNotUndefined(r.normal.hue)
+      assertNotUndefined(r.deuteranopia.hue)
+      assertNotUndefined(r.protanopia.hue)
+      assertNotUndefined(r.achromatopsia.hue)      
+      assertNotUndefined(r.tritanopia.hue)      
+    }},
+    'testContrastFull (> 0.9)': function() { with(this) {
+      var c1 = new JsGouache.HexColor('#ffffff');
+      var c2 = new JsGouache.HexColor('#000000');
+      var r = new JsGouache.ColorAccessible.readability(c1,c2);
+      assert(r.normal.brightness > 0.9)
+      assert(r.deuteranopia.brightness > 0.9)
+      assert(r.protanopia.brightness >= 0.9)
+      assert(r.achromatopsia.brightness >= 0.9)      
+      assert(r.tritanopia.brightness >= 0.9)      
+      assert(r.deuteranopia.hue >= 0.9)
+      assert(r.protanopia.hue >= 0.9)
+      assert(r.achromatopsia.hue >= 0.9)      
+      assert(r.tritanopia.hue >= 0.9)      
+    }},
+    'testContrastNotExistant ( = 0)': function() { with(this) {
+      var c1 = new JsGouache.HexColor('#ffffff');
+      var c2 = new JsGouache.HexColor('#ffffff');
+      var r = new JsGouache.ColorAccessible.readability(c1,c2);
+      assert(r.normal.brightness == 0 )
+      assert(r.deuteranopia.brightness == 0)
+      assert(r.protanopia.brightness == 0)
+      assert(r.achromatopsia.brightness == 0)      
+      assert(r.tritanopia.brightness == 0)      
+      assert(r.deuteranopia.hue == 0)
+      assert(r.protanopia.hue == 0)
+      assert(r.achromatopsia.hue == 0)      
+      assert(r.tritanopia.hue == 0)      
+    }},
+    // Teh next test is totally useless but yet, at moment of it's writting it returns 
+    // true... so if it breaks the algorithm may have been broken
+    'testContrastMidRange ( >= 0.2)': function() { with(this) {
+      var c1 = new JsGouache.HexColor('#ff0000');
+      var c2 = new JsGouache.HexColor('#000000');
+      var r = new JsGouache.ColorAccessible.readability(c1,c2);
+      assert((r.normal.brightness > 0.2))
+      assert((r.deuteranopia.brightness > 0.2))
+      assert((r.protanopia.brightness > 0.2))
+      assert((r.achromatopsia.brightness > 0.2))
+      assert((r.tritanopia.brightness > 0.2 ))
+      assert((r.deuteranopia.hue > 0.2 ))
+      assert((r.protanopia.hue > 0.2 ))
+      assert((r.achromatopsia.hue > 0.2 ))
+      assert((r.tritanopia.hue > 0.2 ))
+      var c1 = new JsGouache.HexColor('#ff2345');
+      var c2 = new JsGouache.HexColor('#000000');
+      var r = new JsGouache.ColorAccessible.readability(c1,c2);
+      
+    }}
+  }, {testLog: "testlog2"});</script>
+</body>
+</html>
