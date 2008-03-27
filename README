@@ -1,10 +1,10 @@
 Js Gouache
 
 Description:
-    This JavaScript project ...
+    JsGouache aims to offer a tool for javascript developers to manipulate colors within various color spaces while raising awareness for different types of color deficiencies.
 
-Example:
-    ...
+Dependencies:
+    Built using newjs ruby gem
 
 More information:
     =http://kits.quickredfoxandkits.com/jsgouache
