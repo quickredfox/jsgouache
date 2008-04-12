@@ -17,6 +17,15 @@
     spaces used on the web: RGB, Hexadecimal, HSL. It also implements a theoretical 
     (limited) simulation of the LMS color space (http://en.wikipedia.org/wiki/LMS_Color_Space) 
     
+ Development:
+ 
+    JsGouache uses the NewJs Gem from Dr.Nic as it's build system, which means that 
+    in order to contribute to the development of this library you need to have ruby 
+    and a couple gems installed. All the sources files are found in the /src folder
+    and compiled into a single javascript file using a rake task. If you download
+    the source code and dont know how all this ruby and rake stuff works, all you 
+    need is probably in the /dist folder (and maybe /docs for the html documentation).
+    
  References:
  
    - http://easyrgb.com

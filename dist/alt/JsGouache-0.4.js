@@ -1,3 +1,4 @@
+;if(!(JsGouache)){
 /*
 
  Script: JsGouache.js
@@ -16,6 +17,15 @@
     The library offers various functions for manipulation of the more common color
     spaces used on the web: RGB, Hexadecimal, HSL. It also implements a theoretical
     (limited) simulation of the LMS color space (http://en.wikipedia.org/wiki/LMS_Color_Space)
+
+ Development:
+
+    JsGouache uses the NewJs Gem from Dr.Nic as it's build system, which means that
+    in order to contribute to the development of this library you need to have ruby
+    and a couple gems installed. All the sources files are found in the /src folder
+    and compiled into a single javascript file using a rake task. If you download
+    the source code and dont know how all this ruby and rake stuff works, all you
+    need is probably in the /dist folder (and maybe /docs for the html documentation).
 
  References:
 
@@ -62,15 +72,15 @@
 
 */
 
-Function.prototype.JSG_Inherits = function (klass) {
+;Function.prototype.JSG_Inherits = function (klass) {
 	if (this == klass) throw('Cannot inherit from self');
 	for (var kmeth in klass.prototype) {
 		if (typeof klass.prototype[kmeth] == "function" && !this.prototype[kmeth]){
 			this.prototype[kmeth] = klass.prototype[kmeth];
-		}
-	}
+		};
+	};
 	this.prototype[klass.JSG_kname()] = klass;
-}
+};
 
 /*
    Function: Function.JSG_Inherits
@@ -79,11 +89,11 @@ Function.prototype.JSG_Inherits = function (klass) {
 
 */
 
-Function.prototype.JSG_kname = function () {
+;Function.prototype.JSG_kname = function () {
     var cn = this.toString();
     cn = cn.substring(cn.indexOf(" ") + 1, cn.indexOf("("));
     return ((cn.charAt(0) == "(") ? 'function ...' : cn);
-}
+};
 
 /*
    Function: Function.JSG_Inherits
@@ -92,12 +102,12 @@ Function.prototype.JSG_kname = function () {
 
 */
 
-Function.prototype.JSG_Override = function (klass, meth) { this.prototype[klass.JSG_kname() + "_" + meth] = klass.prototype[meth]; }
+;Function.prototype.JSG_Override = function (klass, meth) { this.prototype[klass.JSG_kname() + "_" + meth] = klass.prototype[meth]; };
 /*
   Namespace: JsGouache
   JsGouache namespace
 */
-var JsGouache = {
+;var JsGouache = {
   Version: '0.4',
 	/*
      Class: The JsGouache color object (constructor)
@@ -146,11 +156,11 @@ var JsGouache = {
 	if(arguments.length > 2) rgb = arguments; /*  rgb triple given */
 	else if(typeof arguments[0] == 'string'){ /*  string given */
 		var m, rgb , hrgb, cstr = arguments[0].replace(/#|rgb|\(|\)|\s/g,'');
-		if((m = cstr.match(/\d+,\d+,\d+/))) rgb = m[0].split(',');
-		else if((m = cstr.match(/([0-9ABCDEF]{1,2})([0-9ABCDEF]{1,2})([0-9ABCDEF]{1,2})/i)))
+		if((m = cstr.match(/\d+,\d+,\d+/))){ rgb = m[0].split(',');
+		}else if((m = cstr.match(/([0-9ABCDEF]{1,2})([0-9ABCDEF]{1,2})([0-9ABCDEF]{1,2})/i))){
 			hrgb = [(m[1].length == 2 ? m[1] : m[1]+m[1]), (m[2].length == 2 ? m[2] : m[2]+m[2]), (m[3].length == 2 ? m[3] : m[3]+m[3])];
-		else throw('Invalid arguments'); /*  Illegal string		 */
-	}
+		}else{ throw('Invalid arguments'); /*  Illegal string		 */};
+	};
 	/*
 	    TODO
 
@@ -166,7 +176,8 @@ var JsGouache = {
 	/*  If this is not comming from an HSL instanciation calculate hue/saturation/luminance ( formula from easyrgb.com ) */
 		var r = (this.red/255), g = (this.green/255), b = (this.blue/255);
 		var mn = Math.min.apply( Math, [r,g,b] ), mx = Math.max.apply( Math, [r,g,b] ), delta_max = (mx-mn), l = ((mx+mn)*0.5);
-		if(delta_max == 0){ var h=s=0;
+		if(delta_max == 0){
+		  var h=s=0;
 		}else{
 			if(l< 0.5) s = (delta_max / (mx + mn));
 			else s = (delta_max / (2-mx-mn));
@@ -177,13 +188,13 @@ var JsGouache = {
 			else if(g==mx) h=((1/3) + delta_r - delta_b);
 			else if(b==mx) h = ((2/3) + delta_g - delta_r);
 			if(h<0) h+=1; if(h>1) h-=1;
-		}
+		};
 	this.hue        =h;  /* should have been 0-360 but it's not */
 	this.saturation = s; /* 0.0 to 1.0 */
 	this.luminance  = l; /* 0.0 to 1.0 */
 	/*  These functions are private... at development time of this program, they are needed nowhere else. */
-	function dec2hex(dec){ var hexDigits = "0123456789ABCDEF".split(''); return (hexDigits[dec>>4]+hexDigits[dec&15]); }
-	function hex2dec(hex){ return(parseInt(hex,16)); }
+	function dec2hex(dec){ var hexDigits = "0123456789ABCDEF".split(''); return (hexDigits[dec>>4]+hexDigits[dec&15]); };
+	function hex2dec(hex){ return(parseInt(hex,16)); };
 	/*  Calculate perceived Brightness ( http://www.aprompt.ca/WebPageColors.html ) */
 	this.Y = Math.floor(((this.red*299)+(this.green * 587) +(this.blue*114)) / 1000);
 	},
@@ -266,7 +277,7 @@ var JsGouache = {
 			if((6*z)<1) return (x +(y-x)*6*z); if((2*z)<1) return y;
 			if((3*z)<2) return ( x + (y-x)*((2/3)-z) * 6);
 			return x;
-		}
+		};
 		if(s == 0) var r = g = b = (l * 255);
 		else{
 			var b = ((l < 0.5) ? (l * (1+s)) : ((l + s) - (s * l)));
@@ -274,10 +285,9 @@ var JsGouache = {
 			var r = 255 * hue2chrome(a,b,(h + (1/3)));
 			var g = 255 * hue2chrome(a,b,h);
 			b = 255 * hue2chrome(a,b,(h - (1/3)));
-		}
+		};
 		JsGouache.Color.apply(this,[r,g,b]);
 	}
-
 };
 /*
   NameSpace: JsGouache.Color
@@ -285,7 +295,7 @@ var JsGouache = {
     These functions apply to all the color spaces
 
 */
-JsGouache.Color.prototype = {
+;JsGouache.Color.prototype = {
   /*
      Function: JsGouache.Color.complementary
 
@@ -344,11 +354,11 @@ JsGouache.Color.prototype = {
 
      Parameters:
 
-       degrees - (Integer) Distance of color on color wheel in degrees.
+       degrees - (Integer) Distance of color on color wheel in degrees. (can specify multiple distances)
 
      Returns:
 
-        JsGouache.Color Object
+        Array of JsGouache.Color Objects
 
   */
 	degree_offsets: function(degrees /* array */){
@@ -702,19 +712,19 @@ JsGouache.Color.prototype = {
 			case 1: case 'deuteranopia' : comp = 1; break;
 			case 2: case 'tritanopia'   : comp = 2; break;
 			case 3: case 'achromatopsia': return achromatopsia.apply(this); break;
-		}
+		};
 		function achromatopsia(){
 			var grey = (0.299*this.red + 0.587*this.green + 0.114*this.blue);
 			return new JsGouache.Color(grey,grey,grey);
-		}
+		};
 		function rgb2lms(rgb){
 			/*  Based on H. Brettel, F. Vienot and J. Mollon Algorithm, from code by http://www.fx.clemson.edu/~rkarl/c2g.html */
 			return [(rgb[0] * .1992 + rgb[1] * .4114 + rgb[2] * .0742),(rgb[0] * .0353 + rgb[1] * .2226 + rgb[2] * .0574),(rgb[0] * .0185 + rgb[1] * .1231 + rgb[2] * 1.355)];
-		}
+		};
 		function lms2rgb(lms){
 			/*  Based on H. Brettel, F. Vienot and J. Mollon Algorithm, from code by http://www.fx.clemson.edu/~rkarl/c2g.html */
 			return [(7.465  * lms[0] - 13.888  * lms[1] + .17976 * lms[2]), (-1.1852 * lms[0] +  6.805  * lms[1] - .2234  * lms[2]), (.00576  * lms[0] -   .4286 * lms[1] + .7558  * lms[2])]
-		}
+		};
 		function convert(rgb,component){
 			/*  Based on H. Brettel, F. Vienot and J. Mollon Algorithm, from code by http://www.fx.clemson.edu/~rkarl/c2g.html */
 			var a,  rgb_gamma = [] ,rgb_simulated = [];
@@ -728,7 +738,7 @@ JsGouache.Color.prototype = {
 				case 0 : A = ((lms[2]/lms[1] < lms_matrix['w'][2]/lms_matrix['w'][1]) ? lms_matrix[575] : lms_matrix[475]);	break;          /* protan */
 				case 1 : if(lms[2]/lms[0] < lms_matrix['w'][2]/lms_matrix['w'][0]) A = lms_matrix[575];	else A = lms_matrix[475];	break; /* deutan */
 				case 2 : if(lms[1]/lms[0] < lms_matrix['w'][1]/lms_matrix['w'][0]) A = lms_matrix[660];	else A = lms_matrix[485];	break; /* tritan */
-			}
+			};
 			alpha = (lms_matrix['w'][1]*A[2]-lms_matrix['w'][2]*A[1]);
 			beta  = (lms_matrix['w'][2]*A[0]-lms_matrix['w'][0]*A[2]);
 			gamma = (lms_matrix['w'][0]*A[1]-lms_matrix['w'][1]*A[0]);
@@ -736,7 +746,7 @@ JsGouache.Color.prototype = {
 				case 0: lms[0] = (-1*(beta*lms[1] + gamma*lms[2]) / alpha); break; /* protan */
 				case 1: lms[1] = (-1*(alpha*lms[0] + gamma*lms[2]) / beta); break; /* deutan */
 				case 2: lms[2] = (-1*(alpha*lms[0] + beta*lms[1]) / gamma); break; /* tritan */
-			}
+			};
 			rgb_gamma = lms2rgb(lms);
 			for(a=0;a<3;a++){
 				if(rgb_gamma[a] > 0) rgb_simulated[a] = Math.pow(rgb_gamma[a],(1/2.2));
@@ -744,32 +754,37 @@ JsGouache.Color.prototype = {
 				rgb_simulated[a] = Math.floor(rgb_simulated[a]);
 				if(rgb_simulated[a]<0) rgb_simulated[a] = 0;
 				if(rgb_simulated[a]>255) rgb_simulated[a] = 255;
-			}
+			};
 			return [(rgb_simulated[0]),(rgb_simulated[1]),(rgb_simulated[2])];
-		}
-		var vals = convert([this.red,this.green,this.blue],comp)
-		c = new JsGouache.Color(vals[0],vals[1],vals[2])
+		};
+		var vals = convert([this.red,this.green,this.blue],comp);
+		c = new JsGouache.Color(vals[0],vals[1],vals[2]);
 		return c;
 	}
-}
+};
 /*
   Namespace: JsGouache.ColorScales
 
   Generates RGB and HSL color scales (256 colors), returns an array of JsGouache.Color Objects
 
+  Note:
+
+    These are very intensive tasks, and included here as an example.
+    If you dont need them, you might think of removing them from your
+    source file as it slows down browser dramatically.
+
 */
 
-JsGouache.ColorScales = function(){
+;JsGouache.ColorScales = function(){
 	this.RGB = [];	this.HSL = [];
-	for(i=0;i<4096;i++){ if(typeof cc == 'undefined'){ var cc = new JsGouache.Color(255,0,0); }else{this.RGB[i] = cc ; cc = cc.hue_up(4096);}}
-	for(i=0;i<360;i++){ if(typeof cc == 'undefined') var cc = new JsGouache.Color(255,0,0); else{this.HSL[i] = cc ;	cc = cc.hue_up(360);}}
+	for(i=0;i<4096;i++){ if(typeof cc == 'undefined'){ var cc = new JsGouache.Color(255,0,0); }else{this.RGB[i] = cc ; cc = cc.hue_up(4096);}};
+	for(i=0;i<360;i++){ if(typeof cc == 'undefined') var cc = new JsGouache.Color(255,0,0); else{this.HSL[i] = cc ;	cc = cc.hue_up(360);}};
 	return this;
-}
+};
 /*
   Namespace: JsGouache.ColorAccessible
 */
-JsGouache.ColorAccessible = function(){};
-JsGouache.ColorAccessible.prototype = {
+;JsGouache.ColorAccessible = {
   /*
      Function: JsGouache.ColorAccessible.readability
 
@@ -810,16 +825,34 @@ JsGouache.ColorAccessible.prototype = {
 				}
 		}
 	},
+  /*
+     Function: JsGouache.ColorAccessible.add_contrast
+
+     Tries to adjust two colors' contrast to 0.75 or nearest above.
+
+     Parameters:
+
+        clr1 - (JsGouache.Color)
+        clr2 - (JsGouache.Color)
+
+     Returns:
+
+        the two modified colors
+
+  */
 	add_contrast: function(clr1,clr2){
 		var c1 = clr1, c2 = clr2;
-
-		while(this.readability(c1,c2).achromatopsia.brightness < 0.75){
-			if(c1.Y > c2.Y){ c1 = c1.luminance_up(); c2 = c2.luminance_dn();}
-			else{ c1 = c1.luminance_dn(); c2 = c2.luminance_up();}
-		}
-		return [c1, c2]
+	  var readability = JsGouache.ColorAccessible.readability(clr1,clr2);
+		while(readability.achromatopsia.brightness < 0.75){
+			if(c1.Y > c2.Y){
+			  c1 = c1.luminance_up(); c2 = c2.luminance_dn();
+			}else{ c1 = c1.luminance_dn(); c2 = c2.luminance_up();};
+	    readability = JsGouache.ColorAccessible.readability(c1,c2);
+		};
+		return [c1, c2];
 	}
-}
-JsGouache.RGBColor.JSG_Inherits(JsGouache.Color);
-JsGouache.HexColor.JSG_Inherits(JsGouache.Color);
-JsGouache.HSLColor.JSG_Inherits(JsGouache.Color);
+};
+;JsGouache.RGBColor.JSG_Inherits(JsGouache.Color);
+;JsGouache.HexColor.JSG_Inherits(JsGouache.Color);
+;JsGouache.HSLColor.JSG_Inherits(JsGouache.Color);
+};

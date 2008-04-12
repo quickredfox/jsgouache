@@ -21,7 +21,7 @@ Event.onDOMReady(function(){
 		set_readability_data()
 	})
 	Event.observe($('adjustread'),'click',function(evt){
-		var newcolors = (new JsGouache.ColorAccessible().add_contrast(window.randomcolors[0],window.randomcolors[1]));
+		var newcolors = (new JsGouache.ColorAccessible.add_contrast(window.randomcolors[0],window.randomcolors[1]));
 		window.randomcolors = newcolors;
 		$('lorem').setStyle({backgroundColor:window.randomcolors[0].to_css(true),color:window.randomcolors[1].to_css(true)})
 		set_readability_data();
@@ -29,7 +29,7 @@ Event.onDOMReady(function(){
 	$('setrandom').click();
 })
 function set_readability_data(){
-	var readability =  new JsGouache.ColorAccessible().readability(window.randomcolors[0],window.randomcolors[1]);
+	var readability =  new JsGouache.ColorAccessible.readability(window.randomcolors[0],window.randomcolors[1]);
 	$$('#readability .stat').each(function(statblock){
 		var dset = $H(readability).values();
 		$A(statblock.getElementsByTagName('dd')).each(function(dd,i){

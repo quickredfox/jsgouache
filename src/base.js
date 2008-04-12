@@ -2,7 +2,7 @@
   Namespace: JsGouache
   JsGouache namespace
 */
-var JsGouache = {
+;var JsGouache = {
   Version: '<%= APP_VERSION %>',
 	/* 
      Class: The JsGouache color object (constructor)
@@ -51,11 +51,11 @@ var JsGouache = {
 	if(arguments.length > 2) rgb = arguments; /*  rgb triple given */
 	else if(typeof arguments[0] == 'string'){ /*  string given */
 		var m, rgb , hrgb, cstr = arguments[0].replace(/#|rgb|\(|\)|\s/g,'');
-		if((m = cstr.match(/\d+,\d+,\d+/))) rgb = m[0].split(',');				
-		else if((m = cstr.match(/([0-9ABCDEF]{1,2})([0-9ABCDEF]{1,2})([0-9ABCDEF]{1,2})/i)))
+		if((m = cstr.match(/\d+,\d+,\d+/))){ rgb = m[0].split(',');
+		}else if((m = cstr.match(/([0-9ABCDEF]{1,2})([0-9ABCDEF]{1,2})([0-9ABCDEF]{1,2})/i))){
 			hrgb = [(m[1].length == 2 ? m[1] : m[1]+m[1]), (m[2].length == 2 ? m[2] : m[2]+m[2]), (m[3].length == 2 ? m[3] : m[3]+m[3])];
-		else throw('Invalid arguments'); /*  Illegal string		 */
-	}
+		}else{ throw('Invalid arguments'); /*  Illegal string		 */};
+	};
 	/* 
 	    TODO 
 	    
@@ -71,7 +71,8 @@ var JsGouache = {
 	/*  If this is not comming from an HSL instanciation calculate hue/saturation/luminance ( formula from easyrgb.com ) */
 		var r = (this.red/255), g = (this.green/255), b = (this.blue/255);
 		var mn = Math.min.apply( Math, [r,g,b] ), mx = Math.max.apply( Math, [r,g,b] ), delta_max = (mx-mn), l = ((mx+mn)*0.5);
-		if(delta_max == 0){ var h=s=0;
+		if(delta_max == 0){
+		  var h=s=0;
 		}else{
 			if(l< 0.5) s = (delta_max / (mx + mn));
 			else s = (delta_max / (2-mx-mn));
@@ -82,13 +83,13 @@ var JsGouache = {
 			else if(g==mx) h=((1/3) + delta_r - delta_b);
 			else if(b==mx) h = ((2/3) + delta_g - delta_r);
 			if(h<0) h+=1; if(h>1) h-=1;
-		}
+		};
 	this.hue        =h;  /* should have been 0-360 but it's not */
 	this.saturation = s; /* 0.0 to 1.0 */
 	this.luminance  = l; /* 0.0 to 1.0 */
 	/*  These functions are private... at development time of this program, they are needed nowhere else. */
-	function dec2hex(dec){ var hexDigits = "0123456789ABCDEF".split(''); return (hexDigits[dec>>4]+hexDigits[dec&15]); }
-	function hex2dec(hex){ return(parseInt(hex,16)); }
+	function dec2hex(dec){ var hexDigits = "0123456789ABCDEF".split(''); return (hexDigits[dec>>4]+hexDigits[dec&15]); };
+	function hex2dec(hex){ return(parseInt(hex,16)); };
 	/*  Calculate perceived Brightness ( http://www.aprompt.ca/WebPageColors.html ) */
 	this.Y = Math.floor(((this.red*299)+(this.green * 587) +(this.blue*114)) / 1000);
 	},
@@ -171,7 +172,7 @@ var JsGouache = {
 			if((6*z)<1) return (x +(y-x)*6*z); if((2*z)<1) return y;
 			if((3*z)<2) return ( x + (y-x)*((2/3)-z) * 6);
 			return x;
-		}
+		};
 		if(s == 0) var r = g = b = (l * 255);
 		else{
 			var b = ((l < 0.5) ? (l * (1+s)) : ((l + s) - (s * l)));
@@ -179,8 +180,7 @@ var JsGouache = {
 			var r = 255 * hue2chrome(a,b,(h + (1/3)));
 			var g = 255 * hue2chrome(a,b,h);
 			b = 255 * hue2chrome(a,b,(h - (1/3)));
-		}
+		};
 		JsGouache.Color.apply(this,[r,g,b]);
 	}
-
 };

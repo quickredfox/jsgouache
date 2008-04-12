@@ -1,7 +1,7 @@
 /*
   Namespace: JsGouache.ColorAccessible
 */
-JsGouache.ColorAccessible = {
+;JsGouache.ColorAccessible = {
   /*
      Function: JsGouache.ColorAccessible.readability
      
@@ -42,13 +42,30 @@ JsGouache.ColorAccessible = {
 				}
 		}
 	},
+  /*
+     Function: JsGouache.ColorAccessible.add_contrast
+     
+     Tries to adjust two colors' contrast to 0.75 or nearest above.
+      
+     Parameters: 
+     
+        clr1 - (JsGouache.Color)
+        clr2 - (JsGouache.Color)
+        
+     Returns: 
+     
+        the two modified colors
+     
+  */	
 	add_contrast: function(clr1,clr2){
 		var c1 = clr1, c2 = clr2;
-
-		while(this.readability(c1,c2).achromatopsia.brightness < 0.75){
-			if(c1.Y > c2.Y){ c1 = c1.luminance_up(); c2 = c2.luminance_dn();}
-			else{ c1 = c1.luminance_dn(); c2 = c2.luminance_up();}
-		}
-		return [c1, c2]
+	  var readability = JsGouache.ColorAccessible.readability(clr1,clr2);
+		while(readability.achromatopsia.brightness < 0.75){
+			if(c1.Y > c2.Y){ 
+			  c1 = c1.luminance_up(); c2 = c2.luminance_dn();
+			}else{ c1 = c1.luminance_dn(); c2 = c2.luminance_up();};
+	    readability = JsGouache.ColorAccessible.readability(c1,c2);
+		};
+		return [c1, c2];
 	}
-}
+};

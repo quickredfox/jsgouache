@@ -4,7 +4,7 @@
     These functions apply to all the color spaces
     
 */
-JsGouache.Color.prototype = {
+;JsGouache.Color.prototype = {
   /*
      Function: JsGouache.Color.complementary
      
@@ -421,19 +421,19 @@ JsGouache.Color.prototype = {
 			case 1: case 'deuteranopia' : comp = 1; break;
 			case 2: case 'tritanopia'   : comp = 2; break;
 			case 3: case 'achromatopsia': return achromatopsia.apply(this); break;
-		}
+		};
 		function achromatopsia(){
 			var grey = (0.299*this.red + 0.587*this.green + 0.114*this.blue);
 			return new JsGouache.Color(grey,grey,grey);
-		}
+		};
 		function rgb2lms(rgb){
 			/*  Based on H. Brettel, F. Vienot and J. Mollon Algorithm, from code by http://www.fx.clemson.edu/~rkarl/c2g.html */
 			return [(rgb[0] * .1992 + rgb[1] * .4114 + rgb[2] * .0742),(rgb[0] * .0353 + rgb[1] * .2226 + rgb[2] * .0574),(rgb[0] * .0185 + rgb[1] * .1231 + rgb[2] * 1.355)];
-		}
+		};
 		function lms2rgb(lms){
 			/*  Based on H. Brettel, F. Vienot and J. Mollon Algorithm, from code by http://www.fx.clemson.edu/~rkarl/c2g.html */
 			return [(7.465  * lms[0] - 13.888  * lms[1] + .17976 * lms[2]), (-1.1852 * lms[0] +  6.805  * lms[1] - .2234  * lms[2]), (.00576  * lms[0] -   .4286 * lms[1] + .7558  * lms[2])]
-		}
+		};
 		function convert(rgb,component){
 			/*  Based on H. Brettel, F. Vienot and J. Mollon Algorithm, from code by http://www.fx.clemson.edu/~rkarl/c2g.html */
 			var a,  rgb_gamma = [] ,rgb_simulated = [];
@@ -447,7 +447,7 @@ JsGouache.Color.prototype = {
 				case 0 : A = ((lms[2]/lms[1] < lms_matrix['w'][2]/lms_matrix['w'][1]) ? lms_matrix[575] : lms_matrix[475]);	break;          /* protan */
 				case 1 : if(lms[2]/lms[0] < lms_matrix['w'][2]/lms_matrix['w'][0]) A = lms_matrix[575];	else A = lms_matrix[475];	break; /* deutan */
 				case 2 : if(lms[1]/lms[0] < lms_matrix['w'][1]/lms_matrix['w'][0]) A = lms_matrix[660];	else A = lms_matrix[485];	break; /* tritan */
-			}
+			};
 			alpha = (lms_matrix['w'][1]*A[2]-lms_matrix['w'][2]*A[1]);
 			beta  = (lms_matrix['w'][2]*A[0]-lms_matrix['w'][0]*A[2]);
 			gamma = (lms_matrix['w'][0]*A[1]-lms_matrix['w'][1]*A[0]);
@@ -455,7 +455,7 @@ JsGouache.Color.prototype = {
 				case 0: lms[0] = (-1*(beta*lms[1] + gamma*lms[2]) / alpha); break; /* protan */
 				case 1: lms[1] = (-1*(alpha*lms[0] + gamma*lms[2]) / beta); break; /* deutan */
 				case 2: lms[2] = (-1*(alpha*lms[0] + beta*lms[1]) / gamma); break; /* tritan */
-			}
+			};
 			rgb_gamma = lms2rgb(lms);
 			for(a=0;a<3;a++){
 				if(rgb_gamma[a] > 0) rgb_simulated[a] = Math.pow(rgb_gamma[a],(1/2.2));
@@ -463,11 +463,11 @@ JsGouache.Color.prototype = {
 				rgb_simulated[a] = Math.floor(rgb_simulated[a]);
 				if(rgb_simulated[a]<0) rgb_simulated[a] = 0;
 				if(rgb_simulated[a]>255) rgb_simulated[a] = 255;
-			}
+			};
 			return [(rgb_simulated[0]),(rgb_simulated[1]),(rgb_simulated[2])];
-		}
-		var vals = convert([this.red,this.green,this.blue],comp)
-		c = new JsGouache.Color(vals[0],vals[1],vals[2])
+		};
+		var vals = convert([this.red,this.green,this.blue],comp);
+		c = new JsGouache.Color(vals[0],vals[1],vals[2]);
 		return c;
 	}
-}
+};
