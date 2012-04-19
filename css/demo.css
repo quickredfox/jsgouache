@@ -1,0 +1,57 @@
+html,body{background:#151515;width:100%;padding-top:10px;}
+.tableshadow{margin:0 auto;width:950px;background:#131313;height:665px;}
+table{border-collapse:collapse;border-color:#222;top:-3px;left:-5px;position:relative;float:left;width:950px;}
+th{background:#000;text-align:center;color:#fff;font-size:12px;padding:3px 0px;font-weight:normal;letter-spacing:1px;}
+td{vertical-align:top;background:#111;padding:5px;}
+dl dt{color:#f90;font-size:11px;}
+td.specs{width:230px;}
+td.specs dl,td.scheme dl{margin:0;padding:5px;}
+td.specs dl.colorspecs{display:block;float:left;width:120px;}
+td.specs dl.colorspecs dt{display:block;float:left;width:100px;font-size:11px;margin:2px 0;color:#f90;padding:2px;;}
+td.specs .colorspecs dd{display:block;float:left;width:140px;font-size:11px;margin:2px;text-align:center;color:#fff;}
+td.specs .colorspecs .colorsquare{dispaly:block;width:50px;height:50px;border:1px solid #fff;background-color:#000;margin-left:45px;}
+td.specs dl.satlum{display:block;float:left;width:100px;}
+td.specs dl.satlum dt{color:#f90;font-size:11px;}
+td.specs dl.satlum dd{display:block;width:25px;height:50px;border:1px solid #fff;margin:10px 30px;background:#000;cursor:pointer;}
+td.specs dl.satlum dd b{display:block;float:left;width:25px;height:4.5px;}
+td.scheme{width:130px;}
+td.scheme dl dt{color:#f90;font-size:11px;}
+td.scheme dl dd{display:block;width:150px;height:90px;}
+td.mainscale{vertical-align:middle;text-align:center;cursor:pointer;width:50px;}
+#scale{display:block;float:left;width:50px;border:1px solid #fff;margin-bottom:-30px;margin-top:-30px;cursor:pointer;}
+#scale b{height:1.5px;display:block;float:left;width:100%;}
+.scheme-box{position:relative;display:block;float:left;width:60px;height:60px;margin:0;padding:0;margin-top:-40px;margin-left:65px;margin-bottom:-10px;margin-right:-50px;}
+.spdot{font-size:40px;color:#151515;position:relative;visibility:hidden;height:10px;width:30px;cursor: default}
+.dot1{visibility:visible;position:absolute;left:65px;top:10px;}
+.dot2{visibility:visible;position:absolute;left:78px;top:17px;}
+.dot3{visibility:visible;position:absolute;left:86px;top:30px;}
+.dot4{visibility:visible;position:absolute;left:86px;top:45px;}
+.dot5{visibility:visible;position:absolute;left:79px;top:58px;}
+.dot6{visibility:visible;position:absolute;left:66px;top:66px;}
+.dot7{visibility:visible;position:absolute;left:51px;top:66px;}
+.dot8{visibility:visible;position:absolute;left:38px;top:59px;}
+.dot9{visibility:visible;position:absolute;left:30px;top:46px;}
+.dota{visibility:visible;position:absolute;left:30px;top:31px;}
+.dotb{visibility:visible;position:absolute;left:37px;top:18px;}
+.dotc{visibility:visible;position:absolute;left:50px;top:10px;}
+#simulations{margin:0;padding:5px;width:60px;}
+#simulations dt{margin-bottom:15px;display:block;float:left;width:100%;}
+#simulations dd{display:block;float:left;border:1px solid #fff;width:50px;height:50px;margin-bottom:15px;background:#000;}
+#alt-scales{margin:0;padding:5px;list-style-type:none;clear:left;margin-left:-10px;}
+.alt-scale{font-size:11px;color:#F90;width:100px;display:block;float:left;}
+#alt-scales .label{display:block;float:left;width:10px;color:#999;font-size:9px;text-align:center;line-height:11px;vertical-align:middle;height:100px;margin:5px;text-transform:uppercase;font-family:monospace;}
+#alt-scales .miniscale{display:block;float:left;width:10px;border:1px solid #fff;background:#000}
+#alt-scales .miniscale b{display:block;width:100%;float:left;height:0.5px;}
+#loading{color:#fff;font-size:40px;display:block;position:absolute;top:30%;left:25%;text-transform:blink;width:50%;}
+#accessibility{width:200px;}
+#sims{width:150px;}
+button{display:block;float:left;width:100%;font-size:12px;font-weight:bold;border:1px outset #333;background:#333;margin-bottom:5px;color:#f90;}
+button:hover{border:1px ouset #444;background:#444;margin-bottom:5px;color:#fff;}
+#lorem{display:block;float:left;border:1px solid #000;padding:5px;background:#fff;color:#000;line-height:13px;}
+#lorem h3{font-size:13px;margin:5px;}
+#lorem p{font-size:12px;margin:6px;padding-left:3px;text-align:justify;}
+button:active{border:1px inset #333;background:#222;margin-bottom:5px;color:#fc3;}
+#readability{display:block;float:left;}
+#readability dt{margin-bottom:6px;display:block;float:left;}
+#readability .stat dt{color:#999;margin-bottom:6px;dispaly:block;float:left;width:100px;clear:left;}
+#readability .stat dd{color:#fff;margin-bottom:6px;font-size:11px;display:block;float:left;color:#09f;}
